@@ -1,0 +1,33 @@
+# Repo-wide ignores. backend/ and frontend/ have their own .gitignore
+# files for language-specific build output and dependencies.
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# Elixir language server / tooling caches
+.elixir_ls/
+.elixir-tools/
+.lexical/
+.expert/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs
+*.log
+
+# Docker Compose local overrides
+docker-compose.override.yml

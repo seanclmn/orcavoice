@@ -1,0 +1,16 @@
+# LiveKit server config for local development only.
+port: 7880 # HTTP / WebSocket signaling
+
+rtc:
+  tcp_port: 7881 # ICE over TCP fallback
+  udp_port: 7882 # single UDP port for all media (easier to forward from Docker on macOS)
+  use_external_ip: false
+  # Advertise localhost so a browser on this machine can reach the published ports
+  node_ip: 127.0.0.1
+
+# Dev-only API key/secret. Do NOT use in production.
+keys:
+  devkey: orcavoice_dev_secret_change_me_0123456789
+
+logging:
+  level: info
