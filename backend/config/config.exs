@@ -9,7 +9,14 @@ import Config
 
 config :orcavoice,
   ecto_repos: [Orcavoice.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime, binary_id: true]
+
+# UUID primary/foreign keys by default: IDs can be generated anywhere
+# (no central sequence), which keeps the door open for sharding later.
+config :orcavoice, Orcavoice.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id],
+  migration_timestamps: [type: :utc_datetime]
 
 # Configures the endpoint
 config :orcavoice, OrcavoiceWeb.Endpoint,

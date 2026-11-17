@@ -12,6 +12,7 @@ defmodule Orcavoice.Application do
       Orcavoice.Repo,
       {DNSCluster, query: Application.get_env(:orcavoice, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Orcavoice.PubSub},
+      {Orcavoice.Chat.Occupancy, Application.get_env(:orcavoice, Orcavoice.Chat.Occupancy, [])},
       # Start a worker by calling: Orcavoice.Worker.start_link(arg)
       # {Orcavoice.Worker, arg},
       # Start to serve requests, typically the last entry

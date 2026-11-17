@@ -26,3 +26,18 @@ config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Lets requests identify themselves with an `x-user-id` header until real
+# authentication exists. NEVER enable this in production.
+config :orcavoice, :header_auth, true
+
+# Don't call LiveKit from tests; set counts with Occupancy.put_counts/1.
+config :orcavoice, Orcavoice.Chat.Occupancy, poll: false
+
+config :orcavoice, Orcavoice.LiveKit,
+  url: "http://localhost:0",
+  public_url: "ws://livekit.test",
+  api_key: "test",
+  api_secret: "test"
+
+config :orcavoice, :livekit_api, Orcavoice.LiveKitFake

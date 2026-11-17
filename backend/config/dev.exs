@@ -62,3 +62,20 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Lets requests identify themselves with an `x-user-id` header until real
+# authentication exists. NEVER enable this in production.
+config :orcavoice, :header_auth, true
+
+# Matches the dev keys in livekit/livekit.yaml (docker-compose).
+config :orcavoice, Orcavoice.LiveKit,
+  url: "http://localhost:7880",
+  public_url: "ws://localhost:7880",
+  api_key: "devkey",
+  api_secret: "orcavoice_dev_secret_change_me_0123456789"
+
+# Max people who can talk per room (default 10). Override to test, e.g.
+# SPEAKER_LIMIT=1 mix phx.server
+if limit = System.get_env("SPEAKER_LIMIT") do
+  config :orcavoice, Orcavoice.Chat.Speakers, limit: String.to_integer(limit)
+end

@@ -21,6 +21,12 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :prod do
+  config :orcavoice, Orcavoice.LiveKit,
+    url: System.fetch_env!("LIVEKIT_URL"),
+    public_url: System.fetch_env!("LIVEKIT_PUBLIC_URL"),
+    api_key: System.fetch_env!("LIVEKIT_API_KEY"),
+    api_secret: System.fetch_env!("LIVEKIT_API_SECRET")
+
   database_url =
     System.get_env("DATABASE_URL") ||
       raise """

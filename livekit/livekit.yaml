@@ -12,5 +12,12 @@ rtc:
 keys:
   devkey: orcavoice_dev_secret_change_me_0123456789
 
+# Notify the backend when people join/leave so it can enforce the speaker limit.
+# host.docker.internal reaches the Phoenix server running on the host.
+webhook:
+  api_key: devkey
+  urls:
+    - http://host.docker.internal:4000/api/livekit/webhook
+
 logging:
   level: info
